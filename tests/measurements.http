@@ -1,0 +1,26 @@
+@URL=http://localhost:3000
+
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyMSJ9.0TiNlxy3KV5dnhkgY9c-N2eBFnCSZ-MCyvbZd64FSLg
+
+### get all Mesurements by device
+GET {{URL}}/measurements/all/637f784711969418c6398ce0
+Authorization: {{token}}
+
+### register a device
+POST {{URL}}/measurements
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "value": "sdf",
+    "deviceId": "637f784711969418c6398ce0"
+}
+
+### get a measurement by id
+Get {{URL}}/measurements/637f890c9c38b7dc6ab345cf
+Authorization: {{token}}
+
+### delete a measurement by id
+DELETE {{URL}}/measurements/637f890c9c38b7dc6ab345cf
+Authorization: {{token}}
+

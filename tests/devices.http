@@ -1,0 +1,38 @@
+@URL=http://localhost:3000
+
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyMSJ9.0TiNlxy3KV5dnhkgY9c-N2eBFnCSZ-MCyvbZd64FSLg
+
+### get all divices
+GET {{URL}}/devices
+Authorization: {{token}}
+
+### register a device
+POST {{URL}}/devices
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "name": "device3",
+    "userId": "user2",
+    "type": "type1"
+}
+
+### get a device by id
+Get {{URL}}/devices/637f784711969418c6398ce0
+Authorization: {{token}}
+
+### update a device
+PUT {{URL}}/devices/637f784711969418c6398ce0
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "name": "device1 updated",
+    "userId": "user1",
+    "type": "type1"
+}
+
+### delete a device
+DELETE {{URL}}/devices/637f7ab811384393bac79e40
+Authorization: {{token}}
+
