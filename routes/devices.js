@@ -13,7 +13,7 @@ router.get('/:id', async (req, res) => {
   const device = await Device.find({ _id: id, userId: userId });
 
   return device
-    ? res.json(device)
+    ? res.json(device[0])
     : res.sendStatus(404);
 })
 
@@ -36,18 +36,20 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const json = req.body;
+  const userId = req.userId;
+  json.userId = userId;
 
   const device = await Device.findById(id);
 
   if (!device) return res.sendStatus(404);
 
-  if (json.userId !== device.userId) return res.sendStatus(400).body({ message: 'userId is not valid' });
+  if (json.userId !== device.userId) return res.status(400).send({ message: 'userId is not valid' });
 
   json.createdAt = device.createdAt;
   json.updatedAt = new Date();
 
   const hasErrors = new Device(json).validateSync();
-  if (hasErrors) return res.sendStatus(400).body({ message: hasErrors });
+  if (hasErrors) return res.status(400).send({ message: hasErrors });
 
   await Device.updateOne({ _id: id }, json);
   res.json(json)
